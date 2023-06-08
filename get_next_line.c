@@ -1,11 +1,12 @@
 char *get_next_line(int fd)
 {
-	char	buf[10];
-	char	a[];
+	char	buf[BUFFERSIZE];
+	static char *str;
  	
 
-	while(read(fd, buf, 5))
+	while(1)
 	{
+		read(fd, buf, BUFFERSIZE);
 		if		
 	} 
 		return (NULL);

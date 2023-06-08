@@ -5,13 +5,20 @@
 int     main(void)
 {
         int fd = open ("Hola.txt", O_RDONLY);
-	char buf[10];
-	ssize_t nr_bytes;
+	char *line;
+	int datos;
 
+	datos = 0;
         if (fd == -1)
                 return (1);
-
-	buf = get_next_line(fd);
+	while (datos = 0)
+	{
+		line = get_next_line(fd);
+		if (line = 1)
+			return (NULL);
+		printf("%s", line);
+		free(line);
+	}
 	close(fd);
         return (0);
 }

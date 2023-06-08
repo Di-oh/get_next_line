@@ -16,5 +16,13 @@
 # include<stdarg.h>
 # include<stdlib.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif 
 char *get_next_line(int fd);
 #endif

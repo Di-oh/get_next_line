@@ -14,6 +14,7 @@ void	leer_y_guardar(fd);
 {
 	char	*buf;
 	int	nr_caracter;
+	t_list	*list;
 	t_list	*cont_fd;
 	t_list	*new_nodo;
 	t_list	*new_content;
@@ -23,7 +24,7 @@ void	leer_y_guardar(fd);
 	letras = read(fd, buf, BUFFERSIZE);
 
 	str = ft_strjoin(str, buf); 
-	while (str[i] != '$')
+	while (str[i] != '$' && str[i] != '\0')
 		i++;
 	new_content = ft_substr(str, 0, i);
 	new_nodo = ft_lstnew(new_content);
@@ -33,6 +34,9 @@ void	leer_y_guardar(fd);
 		free(new_content);
 		return (NULL);
 	}	
+	ft_lstadd_back(&cont_fd, new_nodo);
+                list = list->next;
+
 	ft_strlcpy(str, ft_strrchr(str, '$'), ft_strlen(str));
 }
 char    *ft_strjoin(char const *s1, char const *s2)

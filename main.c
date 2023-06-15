@@ -11,7 +11,7 @@ int     main(void)
 	datos = 0;
         if (fd == -1)
                 return (1);
-	while (datos = 0)
+	while (datos == 0)
 	{
 		line = get_next_line(fd);
 		if (line = 1)

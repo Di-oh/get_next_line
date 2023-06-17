@@ -1,9 +1,7 @@
 char *get_next_line(int fd)
 {
-	int fin_leer;
-	fin_leer = 0;
-	while (fin_leer == 0)
-		fin _leer = leer_y_guardar(fd);
+
+ 	leer_y_guardar(fd);
 	buscar_y_restar();
 	return (NULL);
 }

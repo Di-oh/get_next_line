@@ -1,56 +1,34 @@
-int     leer_y_guardar(fd);
+char	*leer_y_guardar(fd);
 {
         char    buf[BUFFERSIZE];
         int     nr_chars;
         char    *str;
         int i;
-
-        nr_chars = read(fd, buf, BUFFERSIZE);
+	
+	buf = NULL;
+        nr_chars = read(fd, buf, 10);
         str = ft_strjoin(str, buf);
-
-        if (nr_chars != BUFFERSIZE)
+	printf("%s \n", str);
+        if (nr_chars != 10)
                 return (1);
         else
                 return (0);
 }
-void buscar_y_restar();
+/*
+void buscar_y_restar(char *str);
 {
 
         while (str[i] != '\n' && str[i] != '\0')
-
                 i++;
         str = ft_substr(str, 0, i);
 }
-
+*/
 char *get_next_line(int fd)
 {
- 	leer_y_guardar(fd);
-	buscar_y_restar();
-	return (NULL);
+	char *str;
+
+ 	str = leer_y_guardar(fd);
+//	buscar_y_restar(str);
+	free(str);
+	return (str);
 }
-
-
-void    ft_lstadd_back(t_list **lst, t_list *new)
-{
-        t_list  *temp;
-
-        if (!*lst)
-                *lst = new;
-        else
-        {
-                temp = ft_lstlast(*lst);
-                temp -> next = new;
-        }
-}
-
-t_list  *ft_lstlast(t_list *lst)
-{
-        while (lst)
-        {
-                if (lst->next == NULL)
-                        return (lst);
-                lst = lst->next;
-        }
-        return (lst);
-}
-

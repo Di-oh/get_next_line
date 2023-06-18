@@ -1,6 +1,6 @@
 int     leer_y_guardar(fd);
 {
-        char    buf[5];
+        char    buf[BUFFERSIZE];
         int     nr_chars;
         char    *str;
         int i;
@@ -24,8 +24,33 @@ void buscar_y_restar();
 
 char *get_next_line(int fd)
 {
-
  	leer_y_guardar(fd);
 	buscar_y_restar();
 	return (NULL);
 }
+
+
+void    ft_lstadd_back(t_list **lst, t_list *new)
+{
+        t_list  *temp;
+
+        if (!*lst)
+                *lst = new;
+        else
+        {
+                temp = ft_lstlast(*lst);
+                temp -> next = new;
+        }
+}
+
+t_list  *ft_lstlast(t_list *lst)
+{
+        while (lst)
+        {
+                if (lst->next == NULL)
+                        return (lst);
+                lst = lst->next;
+        }
+        return (lst);
+}
+

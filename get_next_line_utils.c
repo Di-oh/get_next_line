@@ -42,4 +42,16 @@ char    *ft_substr(char const *s, unsigned int start, size_t len)
         str[i] = '\0';
         return (str);
 }
+ 
+t_list  *ft_lstnew(void *content)
+{
+        struct s_list   *list;
+
+        list = malloc(sizeof(struct s_list));
+        if (list == NULL)
+                return (list);
+        list -> content = content;
+        list -> next = NULL;
+        return (list);
+}
 

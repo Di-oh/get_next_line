@@ -1,18 +1,15 @@
 char	*leer_y_guardar(fd);
 {
         char    buf[BUFFERSIZE];
-        int     nr_chars;
+        int     *stra;
         char    *str;
         int i;
 	
-	buf = NULL;
+		buf = NULL;
         nr_chars = read(fd, buf, 10);
         str = ft_strjoin(str, buf);
-	printf("%s \n", str);
-        if (nr_chars != 10)
-                return (1);
-        else
-                return (0);
+		stra = ft_strchr(str, "\n");
+		printf("%s \n", str);
 }
 /*
 void buscar_y_restar(char *str);
@@ -25,7 +22,7 @@ void buscar_y_restar(char *str);
 */
 char *get_next_line(int fd)
 {
-	char *str;
+	static char *str;
 
  	str = leer_y_guardar(fd);
 //	buscar_y_restar(str);

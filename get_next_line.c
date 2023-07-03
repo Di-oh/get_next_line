@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-char	*leer_y_guardar(fd);
-{
-        char    *buf;
-        int     nr_chars;
-        int i;
-	
-	buf = NULL;
-        nr_chars = read(fd, buf, BUFFERSIZE);
-        str = ft_strjoin(str, buf);
-	printf("%s \n", str);
-        if (nr_chars != 10)
-                return (1);
-        else
-                return (0);
-}
-/*
-void buscar_y_restar(char *str);
-{
-=======
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -31,19 +11,18 @@ void buscar_y_restar(char *str);
 /* ************************************************************************** */
 #include <unistd.h>
 #include <stdio.h>
->>>>>>> ae3330212a792dce3abc303e609902c7cbce655d
 
 char *get_next_line(int fd)
 {
 	static char *str;
-<<<<<<< HEAD
-
- 	str = leer_y_guardar(fd);
-	if (strchar()	
+	leer_y_guardar(fd, str);
 //	buscar_y_restar(str);
 	free(str);
 	return (str);
-=======
+}
+
+char	*leer_y_guardar(int fd, char *str)	
+{
 	int nr_char;
 	char *print_str
 	int flag;
@@ -82,5 +61,4 @@ int	main(void)
 
 
 	return (0);
->>>>>>> ae3330212a792dce3abc303e609902c7cbce655d
 }

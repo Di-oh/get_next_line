@@ -11,54 +11,57 @@
 /* ************************************************************************** */
 #include <unistd.h>
 #include <stdio.h>
-
-char *get_next_line(int fd)
-{
-	static char *str;
-	leer_y_guardar(fd, str);
-//	buscar_y_restar(str);
-	free(str);
-	return (str);
-}
+#include <fcntl.h>
+#include <string.h>
+#include <stdlib.h>
 
 char	*leer_y_guardar(int fd, char *str)	
 {
 	int nr_char;
-	char *print_str
-	int flag;
+	char *buff;
 
-	str = ft_calloc(BUFFERSIZE + 1, sizeof(char ));
-	if (str != -1)
+	nr_char = 1;
+	str = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (str == NULL)
 	{
 		free(str);
 		return (NULL);
 	}
-	while (flag == 0)
+	while (ft_strchr(str, '\n') == NULL && nr_char != 0)
 	{
-		nr_char = read(fd, str, BUFFERSIZE);
+		nr_char = read(fd, buff, BUFFER_SIZE);
 		if (nr_char != -1)
 		{
 			free(str);
 			return(NULL);
 		}
-		print_str = ft_strjoin(str, print_str);
-		printf("%s", print_str);
-		if (print_str != -1)
-        {
-            free(print_str);
-            return(NULL);
-        }
-		if (ft_strchr(print_str, '\n')  !=  NULL)
-			flag = 1;
-		
+		str = ft_strjoin(str, str2);
+		if (str == NULL)
+	        {
+        	    free(str);
+		    return(NULL);
+		}
+		printf("%s", str);
 	}
+	printf("%d\n", ft_strchr(str,'\n'));
 
-	return (print_str);
+	return (str);
+}
+
+char *get_next_line(int fd)
+{
+        static char *str;
+        str = leer_y_guardar(fd, str);
+        return (str);
 }
 
 int	main(void)
 {
+	int fd = open ("Hola.txt", O_RDONLY);
+	if (fd == -1)
+                return (1);
 
-
+	printf("%s \n", get_next_line(fd));
+	close(fd);
 	return (0);
 }

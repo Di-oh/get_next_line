@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:03:41 by dionmart          #+#    #+#             */
-/*   Updated: 2023/06/06 17:36:33 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:04:44 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
@@ -16,11 +16,6 @@
 # include<stdarg.h>
 # include<stdlib.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif 

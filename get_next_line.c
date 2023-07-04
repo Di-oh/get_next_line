@@ -21,28 +21,28 @@ char	*leer_y_guardar(int fd, char *str)
 	char *buff;
 
 	nr_char = 1;
-	str = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (str == NULL)
+	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (buff == NULL)
 	{
-		free(str);
+		free(buff);
 		return (NULL);
 	}
-	while (ft_strchr(str, '\n') == NULL && nr_char != 0)
+	while (!ft_strchr(str, '\n') && nr_char != 0)
 	{
 		nr_char = read(fd, buff, BUFFER_SIZE);
 		if (nr_char != -1)
 		{
+			free(buff);
 			free(str);
 			return(NULL);
 		}
-		str = ft_strjoin(str, str2);
-		if (str == NULL)
-	        {
-        	    free(str);
-		    return(NULL);
-		}
+		buff[nr_char] = '\0';
+		str = ft_strjoin(str, buff);
 		printf("%s", str);
 	}
+	free(buff);
+	buff = NULL;
+	return (str);
 	printf("%d\n", ft_strchr(str,'\n'));
 
 	return (str);
@@ -50,7 +50,7 @@ char	*leer_y_guardar(int fd, char *str)
 
 char *get_next_line(int fd)
 {
-        static char *str;
+        char *str;
         str = leer_y_guardar(fd, str);
         return (str);
 }

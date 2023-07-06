@@ -12,11 +12,10 @@
 #include "get_next_line.h"
 #include<stdio.h>
 
-char	*leer_y_guardar(int fd, char *str)	
+char	*read_and_save(int fd, char *str)	
 {
 	int nr_char;
 	char *buff;
-	char *str2;
 	int i;
 
 	i = 0;
@@ -41,10 +40,18 @@ char	*leer_y_guardar(int fd, char *str)
 	}
 	free(buff);
 	buff = NULL;
+	return (str);
+}
+char *separar(char *str)
+{
+	char *str2;
+	int	n;
+	char	c;
+	
+	n = 0;
 	str2 =malloc(sizeof(char) * nr_char);
 	if (str2 == NULL)
 	{
-		free(buff);
 		free(str);
 		free(str2);
 		return(NULL);
@@ -55,18 +62,23 @@ char	*leer_y_guardar(int fd, char *str)
 		i++;
 	}
 	str2[i++] = '\0';
-	while (n <= i)
-			
-	printf("%d\n", i);
-
+	while (str[i] != '\0')
+	{
+		str[n] = str[i];  
+		n++;
+		i++;
+	}
 	return (str2);
 }
 
 char *get_next_line(int fd)
 {
         static char *str = "";
-        str = leer_y_guardar(fd, str);
-        return (str);
+	char str2;
+
+        str = read_and_save(fd, str);
+	str2 = separar(str);
+        return (str2);
 }
 
 int	main(void)

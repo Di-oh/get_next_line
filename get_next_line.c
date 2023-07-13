@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/13 19:34:13 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:35:52 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*get_next_line(int fd)
 	str2 = write_line(str);
 	return (str2);
 }
-
+/*
 int	main(void)
 {
         int fd = open ("Hola.txt", O_RDONLY);
@@ -100,4 +100,4 @@ int	main(void)
 //      }
         close(fd);
 	return (0);
-}
+}*/

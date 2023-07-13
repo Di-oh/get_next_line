@@ -1,21 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
+/*   Updated: 2023/07/13 16:32:03 by dionmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "get_next_line.h"
 #include <stdio.h>
 
-size_t  ft_strlen(char    *str)
+size_t	ft_strlen(char    *str)
 {
-        int     i;
+	int	i;
 
-        i = 0;
-        while (str[i])
-                i++;
-        return (i);
+    i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-char    *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-        char    *str1;
-        size_t  i;
-        size_t  j;
+	char	*str1;
+	size_t	i;
+	size_t	j;
 	
 	if (!s1)
 	{
@@ -24,9 +35,9 @@ char    *ft_strjoin(char *s1, char *s2)
 			return(NULL);
 		s1[0] = '\0';
 	}
-        str1 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-        if (str1 == NULL)
-                return (NULL);
+	str1 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str1 == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	if (s1)
@@ -40,15 +51,14 @@ char    *ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str1[i++] = s2[j++];
 	str1[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-        return (str1);
+	return (str1);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-//	printf("%c\n", s[i]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)

@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/06/20 12:51:47 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:11:40 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -44,18 +44,22 @@ char	*read_and_save(int fd, char *str)
 }
 char *separar(char *str)
 {
-	char *str2;
-	int	n;
-	char	c;
+	char	*str2;
+	int		n;
+	int		i;
 	
 	n = 0;
-	str2 =malloc(sizeof(char) * nr_char);
+	i = 0;
+	while (str[i] !=  '\0')
+			i++;
+	str2 =malloc(sizeof(char) * i);
 	if (str2 == NULL)
 	{
 		free(str);
 		free(str2);
 		return(NULL);
 	}
+	i = 0;
 	while (str[i] != '\n')
 	{
 		str2[i] = str[i];
@@ -64,21 +68,23 @@ char *separar(char *str)
 	str2[i++] = '\0';
 	while (str[i] != '\0')
 	{
+//		printf("%c\n", str[i]);
 		str[n] = str[i];  
 		n++;
 		i++;
 	}
+	str[n] = '\0';
 	return (str2);
 }
 
 char *get_next_line(int fd)
 {
-        static char *str = "";
-	char str2;
+	static char *str = "";
+	char 		*str2;
 
-        str = read_and_save(fd, str);
+	str = read_and_save(fd, str);
 	str2 = separar(str);
-        return (str2);
+	return (str2);
 }
 
 int	main(void)
@@ -88,6 +94,9 @@ int	main(void)
                 return (1);
 //      while (1)
 //      {
+                printf("%s \n", get_next_line(fd));
+		  		printf("%s \n", get_next_line(fd));
+                printf("%s \n", get_next_line(fd));
                 printf("%s \n", get_next_line(fd));
 //      }
         close(fd);

@@ -6,19 +6,18 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/13 17:11:40 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:34:13 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
-#include<stdio.h>
+#include <stdio.h>
 
-char	*read_and_save(int fd, char *str)	
+char	*read_and_save(int fd, char *str)
 {
-	int nr_char;
-	char *buff;
-	int i;
+	int		nr_char;
+	char	*buff;
 
-	i = 0;
 	nr_char = 1;
 	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buff == NULL)
@@ -33,7 +32,7 @@ char	*read_and_save(int fd, char *str)
 		{
 			free(buff);
 			free(str);
-			return(NULL);
+			return (NULL);
 		}
 		buff[nr_char] = '\0';
 		str = ft_strjoin(str, buff);
@@ -42,22 +41,23 @@ char	*read_and_save(int fd, char *str)
 	buff = NULL;
 	return (str);
 }
-char *separar(char *str)
+
+char	*write_line(char *str)
 {
 	char	*str2;
 	int		n;
 	int		i;
-	
+
 	n = 0;
 	i = 0;
-	while (str[i] !=  '\0')
-			i++;
-	str2 =malloc(sizeof(char) * i);
+	while (str[i] != '\0')
+		i++;
+	str2 = malloc(sizeof(char) * i);
 	if (str2 == NULL)
 	{
 		free(str);
 		free(str2);
-		return(NULL);
+		return (NULL);
 	}
 	i = 0;
 	while (str[i] != '\n')
@@ -68,8 +68,7 @@ char *separar(char *str)
 	str2[i++] = '\0';
 	while (str[i] != '\0')
 	{
-//		printf("%c\n", str[i]);
-		str[n] = str[i];  
+		str[n] = str[i];
 		n++;
 		i++;
 	}
@@ -77,13 +76,13 @@ char *separar(char *str)
 	return (str2);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *str = "";
-	char 		*str2;
+	static char	*str = "";
+	char		*str2;
 
 	str = read_and_save(fd, str);
-	str2 = separar(str);
+	str2 = write_line(str);
 	return (str2);
 }
 

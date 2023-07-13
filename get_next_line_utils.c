@@ -6,17 +6,17 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/13 16:32:03 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:22:28 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 #include <stdio.h>
 
-size_t	ft_strlen(char    *str)
+size_t	ft_strlen(char *str)
 {
 	int	i;
 
-    i = 0;
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
@@ -27,12 +27,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str1;
 	size_t	i;
 	size_t	j;
-	
+
 	if (!s1)
 	{
 		s1 = malloc(sizeof(char) * 1);
 		if (s1 == NULL)
-			return(NULL);
+			return (NULL);
 		s1[0] = '\0';
 	}
 	str1 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));

@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/16 20:44:45 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/16 20:53:51 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*read_and_save(int fd, char *str)
 	while (!ft_strchr(buff, '\n') && nr_char > 0)
 	{
 		nr_char = read(fd, buff, BUFFER_SIZE);
-		if (nr_char < -1)
+		if (nr_char == -1)
 		{
 			free(buff);
 			free(str);
@@ -50,12 +50,17 @@ char	*write_line(char *str)
 	int		n;
 	int		i;
 
+	if(str[0] == '\0')
+	{
+		//free(str);  <--- esto ya lo liberamos en el main donde retornamos
+		return NULL;
+	}
 	n = 0;
 	i = ft_strlen(str);
-	str2 = malloc(sizeof(char) * i);
+	str2 = malloc(sizeof(char) * (i + 1));
 	if (str2 == NULL)
 	{
-		free(str);
+		//free(str);  <--- esto ya lo liberamos en el main donde retornamos
 		return (NULL);
 	}
 	i = 0;
@@ -66,7 +71,7 @@ char	*write_line(char *str)
 	}
 	if(str[i] == '\n')
 	{
-//i		str2[i] = '\n';
+		str2[i] = '\n';
 		i++;
 	}
 	str2[i] = '\0';
@@ -81,6 +86,8 @@ char 	*clean_storage(char *str)
 
 	i = 0;
 	n = 0;
+	if(!str)
+		return NULL;
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if(str[i] == '\0')
@@ -88,7 +95,8 @@ char 	*clean_storage(char *str)
 		free(str);
 		return NULL;
 	}
-	new_storage = malloc(sizeof(char) * (ft_strlen(str) - i)  + 1);
+	//new_storage = malloc(sizeof(char) * (ft_strlen(str) - i)  + 10);
+	new_storage = malloc(sizeof(char) * (ft_strlen(str)));
 	if (new_storage == NULL)
 	{
 		free(str);
@@ -117,12 +125,13 @@ char	*get_next_line(int fd)
 	if(!str2)
 	{
 		free(str);
+		str = NULL;
 		return (NULL);
 	}
 	str = clean_storage(str);
 	return (str2);
 }
-
+/*
 int	main(void)
 {
         int fd = open ("Hola.txt", O_RDONLY);
@@ -130,11 +139,11 @@ int	main(void)
                 return (1);
 //      while (1)
 //      {
-        	printf("%s \n", get_next_line(fd));
-		printf("%s \n", get_next_line(fd));
-                printf("%s \n", get_next_line(fd));
-                printf("%s \n", get_next_line(fd));
+        	printf("%s", get_next_line(fd));
+		printf("%s", get_next_line(fd));
+                printf("%s", get_next_line(fd));
+                printf("%s", get_next_line(fd));
 //      }
         close(fd);
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/13 19:22:28 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/16 20:02:14 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -28,13 +28,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!s1)
-	{
-		s1 = malloc(sizeof(char) * 1);
-		if (s1 == NULL)
-			return (NULL);
-		s1[0] = '\0';
-	}
+	s1 = ft_check_str(s1);
+	if(!s1)
+		return NULL;
 	str1 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str1 == NULL)
 		return (NULL);
@@ -50,8 +46,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	while (s2[j])
 		str1[i++] = s2[j++];
-	str1[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	str1[i] = '\0';
 	return (str1);
+}
+
+char	*ft_check_str(char *s1)
+{
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char) * 1);
+		if (s1 == NULL)
+			return (NULL);
+		s1[0] = '\0';
+	}
+	return (s1);
 }
 
 char	*ft_strchr(const char *s, int c)

@@ -49,9 +49,7 @@ char	*write_line(char *str)
 	int		i;
 
 	n = 0;
-	i = 0;
-	while (str[i] != '\0')
-		i++;
+	i = ft_strlen(str);
 	str2 = malloc(sizeof(char) * i);
 	if (str2 == NULL)
 	{
@@ -67,11 +65,7 @@ char	*write_line(char *str)
 	}
 	str2[i++] = '\0';
 	while (str[i] != '\0')
-	{
-		str[n] = str[i];
-		n++;
-		i++;
-	}
+		str[n++] = str[i++];
 	str[n] = '\0';
 	return (str2);
 }
@@ -93,8 +87,8 @@ int	main(void)
                 return (1);
 //      while (1)
 //      {
-                printf("%s \n", get_next_line(fd));
-		  		printf("%s \n", get_next_line(fd));
+        	printf("%s \n", get_next_line(fd));
+		printf("%s \n", get_next_line(fd));
                 printf("%s \n", get_next_line(fd));
                 printf("%s \n", get_next_line(fd));
 //      }

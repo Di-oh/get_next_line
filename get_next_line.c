@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/21 13:30:10 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:27:14 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*read_and_save(int fd, char *str)
 	char	*buff;
 
 	nr_char = 1;
-	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
 	{
 		free(str);
@@ -60,7 +60,7 @@ char	*write_line(char *str)
 	if (str[i] == '\0')
 		str2 = malloc(sizeof(char) * (i + 1));
 	else 
-		str2 = malloc(sizeof(char) * i + 2);
+		str2 = malloc(sizeof(char) * (i + 2));
 	if (str2 == NULL)
 	{
 		//free(str);  <--- esto ya lo liberamos en el main donde retornamos
@@ -95,7 +95,7 @@ char 	*clean_storage(char *str)
 		free(str);
 		return NULL;
 	}
-	new_storage = malloc(sizeof(char) * (ft_strlen(str) - i ) + 1);
+	new_storage = malloc(sizeof(char) * ((ft_strlen(str) - i ) + 1));
 	if (new_storage == NULL)
 	{
 		free(str);
@@ -130,7 +130,7 @@ char	*get_next_line(int fd)
 	str = clean_storage(str);
 	return (str2);
 }
-
+/*
 int	main(void)
 {
         int fd = open ("Hola.txt", O_RDONLY);
@@ -145,4 +145,4 @@ int	main(void)
 //      }
         close(fd);
 	return (0);
-}
+}*/

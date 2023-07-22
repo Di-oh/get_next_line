@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/21 13:28:50 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:38:24 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -57,7 +57,7 @@ char	*ft_check_str(char *s1)
 {
 	if (!s1)
 	{
-		s1 = malloc(sizeof(char) * 1);
+		s1 = malloc(sizeof(char) * 1 + 1);
 		if (s1 == NULL)
 			return (NULL);
 		s1[0] = '\0';

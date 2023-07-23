@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:03:41 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/16 19:59:34 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/07/23 19:51:45 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
@@ -24,6 +24,7 @@
 # endif 
 
 size_t	ft_strlen(char *s);
+char	*ft_free(char **s1);
 char	*ft_strchr(const char *s1, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*read_and_save(int fd, char *str);

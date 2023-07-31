@@ -17,21 +17,30 @@ char	*read_and_save(int fd, char *str)
 	int		nr_char;
 	char	*buff;
 
+	printf("entra en read and save\n");
 	nr_char = 1;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return (ft_free(&str));
 	buff[0] = '\0';
 	while (!ft_strchr(buff, '\n') && nr_char > 0)
-	{
+	{	
+		printf("entrad en el while buff : %s \n", buff);
 		nr_char = read(fd, buff, BUFFER_SIZE);
 		if (nr_char == -1)
 		{
 			free(buff);
 			return (ft_free(&str));
 		}
+		if (nr_char == 0)
+		{
+			buff[nr_char] = '\n';
+			printf("buff : %s \n", buff);
+			nr_char++;
+		}
 		buff[nr_char] = '\0';
 		str = ft_strjoin(str, buff);
+//		printf("Str join: %s ", str);
 	}
 	free(buff);
 	buff = NULL;
@@ -41,12 +50,10 @@ char	*read_and_save(int fd, char *str)
 char	*write_line(char *str)
 {
 	char	*str2;
-	int		n;
 	int		i;
 
 	if (str[0] == '\0')
 		return (NULL);
-	n = 0;
 	i = ft_strlen(str);
 	if (str[i] == '\0')
 		str2 = malloc(sizeof(char) * (i + 1));
@@ -76,8 +83,7 @@ char	*clean_storage(char *str)
 	n = 0;
 	if (!str)
 		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
+	i = ft_strlen(str);
 	if (str[i] == '\0')
 		return (ft_free(&str));
 	new_storage = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1));
@@ -95,11 +101,15 @@ char	*get_next_line(int fd)
 {
 	static char	*str = NULL;
 	char		*str2;
-
+	
+	printf("entra en el get_next_line\n");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!str || (str && ft_strchr(str, '\n')))
+	{	
+		printf("Leera \n");
 		str = read_and_save(fd, str);
+	}
 	if (!str)
 		return (NULL);
 	str2 = write_line(str);
@@ -108,7 +118,7 @@ char	*get_next_line(int fd)
 	str = clean_storage(str);
 	return (str2);
 }
-/*
+
 int	main(void)
 {
         int fd = open ("lines_around_10.txt", O_RDONLY);
@@ -116,6 +126,7 @@ int	main(void)
                 return (1);
 //      while (1)
 //      {
+		printf("antes del get_next_line\n");
         	printf("%s", get_next_line(fd));
 		printf("%s", get_next_line(fd));
                 printf("%s", get_next_line(fd));
@@ -123,4 +134,4 @@ int	main(void)
 //      }
         close(fd);
 	return (0);
-}*/
+}

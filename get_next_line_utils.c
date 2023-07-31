@@ -19,7 +19,7 @@ size_t	ft_strlen(char *str)
 	if (!str)
 		return (0);
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
 }
@@ -39,7 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = malloc(sizeof(char) * 1 + 1);
+		s1 = malloc(sizeof(char) * 1);
 		if (s1 == NULL)
 			return (NULL);
 		s1[0] = '\0';
@@ -48,13 +48,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (str1 == NULL)
 		return (ft_free(&s1));
 	i = -1;
-	while (s1[++i])
-		str1[i] = s1[i];
+	if (s1)
+		while (s1[++i])
+			str1[i] = s1[i];
 	j = 0;
 	while (s2[j])
 		str1[i++] = s2[j++];
 	str1[i] = '\0';
 	free(s1);
+//	printf("Str1 join: %s \n", str1)
 	return (str1);
 }
 

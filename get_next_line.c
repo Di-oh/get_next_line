@@ -112,8 +112,8 @@ char	*get_next_line(int fd)
 int	main(void)
 {
        // int fd = open ("variable_nls.txt", O_RDONLY);
-       int fd = open ("Hola.txt", O_RDONLY);
-       // int fd = open ("lines_around_10.txt", O_RDONLY);
+       //int fd = open ("Hola.txt", O_RDONLY);
+        int fd = open ("lines_around_10.txt", O_RDONLY);
         if (fd == -1)
                 return (1);
 //      while (1)

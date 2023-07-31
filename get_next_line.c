@@ -12,68 +12,61 @@
 
 #include "get_next_line.h"
 
-char	*read_and_save(int fd, char *str)
+char	*read_and_save(int fd, char *storage)
 {
 	int		nr_char;
 	char	*buff;
 
-	printf("entra en read and save\n");
+//	printf("entra en read and save\n");
 	nr_char = 1;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
-		return (ft_free(&str));
+		return (ft_free(&storage));
 	buff[0] = '\0';
 	while (!ft_strchr(buff, '\n') && nr_char > 0)
 	{	
-		printf("entrad en el while buff : %s \n", buff);
 		nr_char = read(fd, buff, BUFFER_SIZE);
 		if (nr_char == -1)
 		{
 			free(buff);
-			return (ft_free(&str));
-		}
-		if (nr_char == 0)
-		{
-			buff[nr_char] = '\n';
-			printf("buff : %s \n", buff);
-			nr_char++;
+			return (ft_free(&storage));
 		}
 		buff[nr_char] = '\0';
-		str = ft_strjoin(str, buff);
+		storage = ft_strjoin(storage, buff);
 //		printf("Str join: %s ", str);
 	}
 	free(buff);
 	buff = NULL;
-	return (str);
+	return (storage);
 }
 
-char	*write_line(char *str)
+char	*write_line(char *storage)
 {
-	char	*str2;
+	char	*line;
 	int		i;
 
-	if (str[0] == '\0')
+	if (storage[0] == '\0')
 		return (NULL);
-	i = ft_strlen(str);
-	if (str[i] == '\0')
-		str2 = malloc(sizeof(char) * (i + 1));
+	i = ft_strlen_gnl(storage, 0);
+	if (storage[i] == '\0')
+		line = malloc(sizeof(char) * (i + 1));
 	else 
-		str2 = malloc(sizeof(char) * (i + 2));
-	if (str2 == NULL)
+		line = malloc(sizeof(char) * (i + 2));
+	if (line == NULL)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (storage[i] != '\n' && storage[i] != '\0')
 	{
-		str2[i] = str[i];
+		line[i] = storage[i];
 		i++;
 	}
-	if (str[i] == '\n')
-		str2[i++] = '\n';
-	str2[i] = '\0';
-	return (str2);
+	if (storage[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
-char	*clean_storage(char *str)
+char	*clean_storage(char *storage)
 {
 	char	*new_storage;
 	int		n;
@@ -81,52 +74,51 @@ char	*clean_storage(char *str)
 
 	i = 0;
 	n = 0;
-	if (!str)
+	if (!storage)
 		return (NULL);
-	i = ft_strlen(str);
-	if (str[i] == '\0')
-		return (ft_free(&str));
-	new_storage = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1));
+	i = ft_strlen_gnl(storage, 0);
+	if (storage[i] == '\0')
+		return (ft_free(&storage));
+	new_storage = malloc(sizeof(char) * ((ft_strlen_gnl(storage, 1) - i) + 1));
 	if (new_storage == NULL)
-		return (ft_free(&str));
+		return (ft_free(&storage));
 	i++;
-	while (str[i] != '\0')
-		new_storage[n++] = str[i++];
+	while (storage[i] != '\0')
+		new_storage[n++] = storage[i++];
 	new_storage[n] = '\0';
-	free(str);
+	free(storage);
 	return (new_storage);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*str = NULL;
-	char		*str2;
+	static char	*storage = NULL;
+	char		*temp_line;
 	
-	printf("entra en el get_next_line\n");
+//	printf("entra en el get_next_line\n");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!str || (str && ft_strchr(str, '\n')))
-	{	
-		printf("Leera \n");
-		str = read_and_save(fd, str);
-	}
-	if (!str)
+	if (!storage || (storage && !ft_strchr(storage, '\n')))
+		storage = read_and_save(fd, storage);
+	if (!storage)
 		return (NULL);
-	str2 = write_line(str);
-	if (!str2)
-		return (ft_free(&str));
-	str = clean_storage(str);
-	return (str2);
+	temp_line = write_line(storage);
+	if (!temp_line)
+		return (ft_free(&storage));
+	storage = clean_storage(storage);
+	return (temp_line);
 }
 
 int	main(void)
 {
-        int fd = open ("lines_around_10.txt", O_RDONLY);
+       // int fd = open ("variable_nls.txt", O_RDONLY);
+       int fd = open ("Hola.txt", O_RDONLY);
+       // int fd = open ("lines_around_10.txt", O_RDONLY);
         if (fd == -1)
                 return (1);
 //      while (1)
 //      {
-		printf("antes del get_next_line\n");
+	//	printf("antes del get_next_line\n");
         	printf("%s", get_next_line(fd));
 		printf("%s", get_next_line(fd));
                 printf("%s", get_next_line(fd));

@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/23 20:22:10 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:12:25 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -38,8 +38,8 @@ char	*ft_free(char **str)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str1;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	if (!s1)
 	{
@@ -48,7 +48,8 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	str1 = malloc(sizeof(char) * (ft_strlen_gnl(s1, 1) + ft_strlen_gnl(s2, 1) + 1));
+	str1 = malloc(sizeof(char) * 
+			(ft_strlen_gnl(s1, 1) + ft_strlen_gnl(s2, 1) + 1));
 	if (str1 == NULL)
 		return (ft_free(&s1));
 	i = -1;
@@ -60,7 +61,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		str1[i++] = s2[j++];
 	str1[i] = '\0';
 	free(s1);
-//	printf("Str1 join: %s \n", str1)
 	return (str1);
 }
 

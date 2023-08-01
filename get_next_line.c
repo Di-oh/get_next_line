@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/07/23 20:58:05 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:14:08 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ char	*read_and_save(int fd, char *storage)
 	int		nr_char;
 	char	*buff;
 
-//	printf("entra en read and save\n");
 	nr_char = 1;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return (ft_free(&storage));
 	buff[0] = '\0';
-	while (!ft_strchr(buff, '\n') && nr_char > 0)
-	{	
+	while (!(ft_strchr(buff, '\n')) && nr_char > 0)
+	{
 		nr_char = read(fd, buff, BUFFER_SIZE);
 		if (nr_char == -1)
 		{
@@ -33,7 +32,6 @@ char	*read_and_save(int fd, char *storage)
 		}
 		buff[nr_char] = '\0';
 		storage = ft_strjoin(storage, buff);
-//		printf("Str join: %s ", str);
 	}
 	free(buff);
 	buff = NULL;
@@ -93,37 +91,33 @@ char	*clean_storage(char *storage)
 char	*get_next_line(int fd)
 {
 	static char	*storage = NULL;
-	char		*temp_line;
-	
-//	printf("entra en el get_next_line\n");
+	char		*temp_ln;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!storage || (storage && !ft_strchr(storage, '\n')))
 		storage = read_and_save(fd, storage);
 	if (!storage)
 		return (NULL);
-	temp_line = write_line(storage);
-	if (!temp_line)
+	temp_ln = write_line(storage);
+	if (!temp_ln)
 		return (ft_free(&storage));
 	storage = clean_storage(storage);
-	return (temp_line);
+	return (temp_ln);
 }
 
 int	main(void)
 {
        // int fd = open ("variable_nls.txt", O_RDONLY);
        //int fd = open ("Hola.txt", O_RDONLY);
-        int fd = open ("lines_around_10.txt", O_RDONLY);
+//        int fd = open ("lines_around_10.txt", O_RDONLY);
+        int fd = open ("", O_RDONLY);
         if (fd == -1)
                 return (1);
-//      while (1)
-//      {
-	//	printf("antes del get_next_line\n");
+	    while (1)
+	   	{
         	printf("%s", get_next_line(fd));
-		printf("%s", get_next_line(fd));
-                printf("%s", get_next_line(fd));
-                printf("%s", get_next_line(fd));
-//      }
+		}
         close(fd);
 	return (0);
 }

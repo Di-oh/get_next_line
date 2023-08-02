@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 12:03:41 by dionmart          #+#    #+#             */
-/*   Updated: 2023/08/02 11:31:34 by dionmart         ###   ########.fr       */
+/*   Created: 2023/08/02 12:57:27 by dionmart          #+#    #+#             */
+/*   Updated: 2023/08/02 12:58:15 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdarg.h>
@@ -18,10 +19,11 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
-# endif 
+# endif
 
 size_t	gnl_strlen(char *s, int op);
 char	*gnl_free(char **s1);

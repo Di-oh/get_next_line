@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:01:27 by dionmart          #+#    #+#             */
-/*   Updated: 2023/08/02 11:31:23 by dionmart         ###   ########.fr       */
+/*   Created: 2023/08/02 12:58:41 by dionmart          #+#    #+#             */
+/*   Updated: 2023/08/02 13:01:47 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 size_t	gnl_strlen(char *str, int op)
 {
@@ -21,7 +22,7 @@ size_t	gnl_strlen(char *str, int op)
 	if (op == 1)
 		while (str[i])
 			i++;
-	else 
+	else
 		while (str[i] && str[i] != '\n')
 			i++;
 	return (i);
@@ -47,8 +48,8 @@ char	*gnl_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	str1 = malloc(sizeof(char) * 
-			(gnl_strlen(s1, 1) + gnl_strlen(s2, 1) + 1));
+	str1 = malloc(sizeof(char) 
+			* (gnl_strlen(s1, 1) + gnl_strlen(s2, 1) + 1));
 	if (str1 == NULL)
 		return (gnl_free(&s1));
 	i = -1;

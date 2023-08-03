@@ -6,7 +6,7 @@
 /*   By: dionmart <dionmart@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:16:00 by dionmart          #+#    #+#             */
-/*   Updated: 2023/08/02 11:35:09 by dionmart         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:15:26 by dionmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ char	*get_next_line(int fd)
 	storage = clean_storage(storage);
 	return (temp_ln);
 }
-/*
+
 int	main(void)
 {
 	int n;
 	n = 0;
        // int fd = open ("variable_nls.txt", O_RDONLY);
-       //int fd = open ("Hola.txt", O_RDONLY);
-        int fd = open ("lines_around_10.txt", O_RDONLY);
+       int fd = open ("Hola.txt", O_RDONLY);
+       // int fd = open ("lines_around_10.txt", O_RDONLY);
 //        int fd = open ("", O_RDONLY);
         if (fd == -1)
                 return (1);
@@ -123,4 +123,4 @@ int	main(void)
 		}
         close(fd);
 	return (0);
-}*/
+}
